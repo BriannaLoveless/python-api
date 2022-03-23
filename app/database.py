@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import psycopg2
+from psycopg2.extras import RealDictCursor
+import time
 
 SQLALCHEMY_DATABASE_URL = 'postgresql://olrxaxgg:GVFddU6GxUcNDuTibacjrtAF06VmxOdu@otto.db.elephantsql.com/olrxaxgg'
 
@@ -17,3 +20,16 @@ def get_db():
         yield db
     finally:
         db.close()
+
+# while True:
+
+#     try: 
+#         conn = psycopg2.connect(host='otto.db.elephantsql.com', database='olrxaxgg', user='olrxaxgg', 
+#                                 password='GVFddU6GxUcNDuTibacjrtAF06VmxOdu', cursor_factory=RealDictCursor)
+#         cursor = conn.cursor()
+#         print("Database connection was successfull!")
+#         break
+#     except Exception as error:
+#         print('Connecting to database failed')
+#         print('Error: ', error)
+#         time.sleep(5)
